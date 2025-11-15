@@ -6,7 +6,8 @@ int main(int _argc, char** _argv)
     if (!oSocket.initSocket())
         return 0;
 
+    SocketClean oSocketClean;
+
     printf("Socket() Ok.\n");
-    oSocket.cleanSocket();
     return 0;
 }

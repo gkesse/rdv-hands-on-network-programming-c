@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 
+// Socket
 class Socket
 {
 public:
@@ -15,3 +16,12 @@ public:
     bool initSocket() const;
     void cleanSocket() const;
 };
+
+// SocketClean
+class SocketClean
+{
+public:
+    explicit SocketClean();
+    ~SocketClean();
+};
+
