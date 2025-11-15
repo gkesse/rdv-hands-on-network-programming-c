@@ -1,6 +1,7 @@
 # directories
 /**/build/
 /**/tmp/
+/**/vscode/
 
 # files
 /**/~*
