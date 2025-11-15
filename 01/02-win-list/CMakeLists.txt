@@ -12,12 +12,10 @@ set(SRC_FILES
 if (WIN32)
     list(APPEND SRC_FILES
         AdapterWin.cpp
-        ToolsWin.cpp
     )
 elseif(UNIX)
     list(APPEND SRC_FILES
         AdapterUnix.cpp
-        ToolsUnix.cpp
     )
 endif ()
 

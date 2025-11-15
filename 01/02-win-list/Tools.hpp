@@ -11,11 +11,6 @@
 // Common
 #include <string>
 
-// Types
-#if defined(__unix__)
-using wchar_t = char;
-#endif
-
 #define oTools Tools::Instance()
 
 class Tools

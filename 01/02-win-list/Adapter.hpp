@@ -12,6 +12,11 @@
 
 #pragma comment(lib, "ws2_32.lib")
 #pragma comment(lib, "iphlpapi.lib")
+#else
+// Unix
+#include <sys/socket.h>
+#include <netdb.h>
+#include <ifaddrs.h>
 #endif
 
 // Common
@@ -30,8 +35,12 @@ using AdapterAddressList = std::vector<AdapterAddressParams*>;
 // AdapterParams
 struct AdapterParams
 {
+#if defined(_WIN32)
     DWORD size;
-    PIP_ADAPTER_ADDRESSES adapters;
+    PIP_ADAPTER_ADDRESSES adapters = nullptr;
+#else
+    struct ifaddrs* addresses = nullptr;
+#endif
     AdapterNameList adapterNameList;
     AdapterAddressList addressNameList;
 
@@ -39,6 +48,7 @@ struct AdapterParams
     ~AdapterParams();
     AdapterNameParams* addAdapterName();
     AdapterAddressParams* addApaterAddress(AdapterNameParams* _adapterName);
+    bool getAdapterName(AdapterNameParams** _adapterName, const std::string& _name) const;
     AdapterAddressList getAddressList(AdapterNameParams* _adapterName) const;
 };
 
@@ -86,4 +96,8 @@ class AdapterException : public std::exception
 public:
     explicit AdapterException(const std::string& _msg);
     ~AdapterException();
+    const char* what() const throw();
+
+private:
+    std::string m_msg;
 };
