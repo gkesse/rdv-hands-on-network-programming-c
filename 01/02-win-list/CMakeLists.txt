@@ -16,7 +16,7 @@ if (WIN32)
     )
 elseif(UNIX)
     list(APPEND SRC_FILES
-        AdapterUnix.
+        AdapterUnix.cpp
         ToolsUnix.cpp
     )
 endif ()
