@@ -1,4 +1,5 @@
 #include "Adapter.hpp"
+#include "Tools.hpp"
 
 // Config
 namespace config::adapter
@@ -68,16 +69,22 @@ bool Adapter::loadAdapters(AdapterParams& _params) const
         PIP_ADAPTER_UNICAST_ADDRESS address = adapter->FirstUnicastAddress;
         while (address)
         {
-            AdapterAddressParams* addressName = _params.addApaterAddress(adapterName);
-            const char* family = (address->Address.lpSockaddr->sa_family == AF_INET) ? "IPv4" : "IPv6";
-            addressName->family = family;
+            int family = address->Address.lpSockaddr->sa_family;
 
-            char addressIP[100];
+            if (family == AF_INET || family == AF_INET6)
+            {
+                AdapterAddressParams* addressName = _params.addApaterAddress(adapterName);
 
-            getnameinfo(address->Address.lpSockaddr,
-                address->Address.iSockaddrLength,
-                addressIP, sizeof(addressIP), 0, 0, NI_NUMERICHOST);
-            addressName->address = addressIP;
+                addressName->family = (family == AF_INET) ? "IPv4" : "IPv6";
+
+                char addressIP[100];
+
+                getnameinfo(address->Address.lpSockaddr,
+                    address->Address.iSockaddrLength,
+                    addressIP, sizeof(addressIP), 0, 0, NI_NUMERICHOST);
+
+                addressName->address = addressIP;
+            }
 
             address = address->Next;
         }
