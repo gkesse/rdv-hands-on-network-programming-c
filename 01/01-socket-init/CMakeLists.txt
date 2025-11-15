@@ -11,7 +11,7 @@ if (WIN32)
     list(APPEND SRC_FILES
         SocketWin.cpp
     )
-elseif(UNIX)
+else()
     list(APPEND SRC_FILES
         SocketUnix.cpp
     )

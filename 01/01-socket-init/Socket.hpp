@@ -5,7 +5,7 @@
 #pragma comment(lib, "ws2_32.lib")
 #endif
 
-#include <stdio.h>
+#include <iostream>
 
 // Socket
 class Socket

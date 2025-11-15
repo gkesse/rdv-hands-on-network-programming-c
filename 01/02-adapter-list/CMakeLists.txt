@@ -13,7 +13,7 @@ if (WIN32)
     list(APPEND SRC_FILES
         AdapterWin.cpp
     )
-elseif(UNIX)
+else()
     list(APPEND SRC_FILES
         AdapterUnix.cpp
     )
