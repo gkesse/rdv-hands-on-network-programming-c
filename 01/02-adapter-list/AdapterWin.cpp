@@ -20,7 +20,10 @@ AdapterParams::AdapterParams()
 
 AdapterParams::~AdapterParams()
 {
-    free(adapters);
+    if (adapters)
+    {
+        free(adapters);
+    }
 
     for (auto* adapterName : adapterNameList)
     {
