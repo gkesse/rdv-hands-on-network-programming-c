@@ -1,8 +1,8 @@
-# directories
+# Ignorer des répertoires
 /**/build/
 /**/tmp/
 /**/.vscode/
 
-# files
+# Ignorer des fichiers
 /**/~*
 /**/*.bak

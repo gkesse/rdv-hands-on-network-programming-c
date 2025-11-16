@@ -1,14 +1,20 @@
-# Set the default behavior, in case people don't have core.autocrlf set.
+# Définir le comportement par défaut,
+# au cas où core.autocrlf ne serait pas défini.
 * text=auto
 
-# Explicitly declare text files you want to always be normalized and converted
-# to native line endings on checkout.
+# Déclarez explicitement les fichiers texte que vous souhaitez
+# toujours normaliser et convertir
+# aux fins de ligne natives lors de l'extraction.
 *.c text
 *.h text
+*.cpp text
+*.hpp text
 
-# Declare files that will always have CRLF line endings on checkout.
+# Déclarer les fichiers qui auront toujours
+# des fins de ligne CRLF lors de l'extraction.
 *.sln text eol=crlf
 
-# Denote all files that are truly binary and should not be modified.
+# Indiquez tous les fichiers qui sont véritablement binaires
+# et qui ne doivent pas être modifiés.
 *.png binary
 *.jpg binary
