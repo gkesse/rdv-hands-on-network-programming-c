@@ -7,7 +7,7 @@ set(SRC_FILES
     Socket.cpp
 )
 
-if (WIN32)
+if(WIN32)
     list(APPEND SRC_FILES
         SocketWin.cpp
     )
@@ -15,7 +15,7 @@ else()
     list(APPEND SRC_FILES
         SocketUnix.cpp
     )
-endif ()
+endif()
 
 add_executable(${PROJECT_NAME}
     ${SRC_FILES}

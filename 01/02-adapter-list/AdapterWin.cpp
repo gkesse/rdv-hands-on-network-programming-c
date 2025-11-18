@@ -11,11 +11,6 @@ namespace config::adapter
 AdapterParams::AdapterParams()
     :size(config::adapter::memorySize)
 {
-    adapters = adapters = (PIP_ADAPTER_ADDRESSES)malloc(config::adapter::memorySize);
-    if (!adapters)
-    {
-        throw AdapterException("AdapterParams() failed.");
-    }
 }
 
 AdapterParams::~AdapterParams()
@@ -56,10 +51,18 @@ void Adapter::cleanSocket() const
 
 bool Adapter::loadAdapters(AdapterParams& _params) const
 {
+    _params.adapters = (PIP_ADAPTER_ADDRESSES)malloc(config::adapter::memorySize);
+    if (!_params.adapters)
+    {
+        fprintf(stderr, "loadAdapters(1) failed.|size=%ld\n", _params.size);
+        return false;
+
+    }
+
     int adpaterResult = GetAdaptersAddresses(AF_UNSPEC, GAA_FLAG_INCLUDE_PREFIX, 0, _params.adapters, &_params.size);
     if (adpaterResult == ERROR_BUFFER_OVERFLOW)
     {
-        fprintf(stderr, "loadAdapters() failed.|size=%ld\n", _params.size);
+        fprintf(stderr, "loadAdapters(2) failed.|size=%ld\n", _params.size);
         return false;
     }
 

@@ -9,7 +9,7 @@ set(SRC_FILES
     Tools.cpp
 )
 
-if (WIN32)
+if(WIN32)
     list(APPEND SRC_FILES
         AdapterWin.cpp
     )
@@ -17,7 +17,7 @@ else()
     list(APPEND SRC_FILES
         AdapterUnix.cpp
     )
-endif ()
+endif()
 
 add_executable(${PROJECT_NAME}
     ${SRC_FILES}
